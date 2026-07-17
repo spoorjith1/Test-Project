@@ -2,16 +2,24 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 
 function App() {
-  const [message, setMessage] = useState('')
-  const API_URL = import.meta.env.VITE_BACKEND_BASE_URL
+  const [data, setData] = useState('')
+  const API_URL = import.meta.env.VITE_BACKEND_API_URL
+  const BASE_URL = import.meta.env.VITE_BACKEND_BASE_URL
 
   useEffect(()=> {
-    axios.get(`${API_URL}/testMessageView/`).then((response)=> {setMessage(response.data.message)})
+    axios.get(`${API_URL}/testMessageView/`).then((response)=> {setData(response.data), console.log(response.data)})
   }, [])
 
+  console.log(`${BASE_URL}${data.image}`);
+
   return (
-    <div>
-      {message && <div>{message}</div>}
+    <div className='page-container'>
+      {data &&
+      <div className='message-box'>
+        <p className='message-text'>{data.message}</p>
+        <img src={`${BASE_URL}${data.image}`} alt='image' className='message-image' />
+      </div>
+      }
     </div>
   )
 }
