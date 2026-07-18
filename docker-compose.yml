@@ -6,8 +6,8 @@ services:
 
     container_name: backend
 
-    ports:
-      - "8000:8000"
+    expose:
+      - "8000"
 
     volumes:
       - ./backend-drf:/app
