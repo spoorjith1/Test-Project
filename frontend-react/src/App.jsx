@@ -16,6 +16,7 @@ function App() {
     <div className='page-container'>
       {data &&
       <div className='message-box'>
+        <h2>Hiii</h2>
         <p className='message-text'>{data.message}</p>
         <img src={`${BASE_URL}${data.image}`} alt='image' className='message-image' />
       </div>
