@@ -8,6 +8,7 @@ My Deployment Journey (Learning and Deploying)
 ### Production :
 -> also a computer thats always online, 24/7, has a public IP, build to serve many users simultaneously
 
+<hr />
 
 ## L2 : environment variables
 use python-decouple or python-environ  
@@ -50,3 +51,49 @@ DATABASES = {
 } 
 
 CORS_ALLOWED_ORIGINS = env.list('CORS_ALLOWED_ORIGINS')
+
+<hr />
+<!--
+## L3 : Docker
+- Docker packages an application together with everything it needs to run, so it behaves consistently across different computers and servers.  
+- Docker helps the project run on every device.  
+- Docker creates an isolated environment with all the requirements for the project which includes(python , mysql, OS, React, env, ....)  
+-->
+<!--
+#### Dokcer Terminology :
+<u>Docker File</u>  
+A text file that tells docker what to do (Ex : use python, install requirements, copy my code, run django, ...)  
+Docker reads this file and creates the image  
+*An text file with instructions  
+-->
+<!--
+<u>Docker Image</u>  
+A Template or Blueprint, that contains everything to run an application  
+-->
+<!--
+<u>Docker Container</u>  
+Running the instance of the image (live application)  
+-->
+<!--
+<u>Docker Hub</u>  
+Download pre-made images created by others  
+-->
+<!--
+<u>Docker Compose</u>  
+instead of running multiple containers manually start all of them together  
+#### Create Dockerfile in backend main directory and add :  
+FROM python:3.13  
+WORKDIR /app  
+COPY requirements.txt  
+RUN pip install --no-cache-dir -r requirements.txt .  
+COPY . .  
+EXPOSE 8000  
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]  
+-->
+<!--
+in backend terminal :  
+```docker build -t test-backend .```   
+-->
+<!--
+#### Create docker-compose.yml in main project dir and add :
+-->
