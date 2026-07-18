@@ -21,21 +21,19 @@ services:
       - db
     
   db:
-    image: mysql:8.4
+    image: postgres:17-alpine
 
-    container_name: mysql
+    container_name: postgres
 
     restart: always
 
     environment:
-      MYSQL_DATABASE: ${MYSQL_DATABASE}
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-
-    ports:
-      - "3307:3306"
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
 
     volumes:
-      - mysql_data:/var/lib/mysql
+      - postgres_data:/var/lib/postgresql/data
   
   nginx:
     image: nginx:alpine
@@ -56,6 +54,6 @@ services:
 
 
 volumes:
-  mysql_data:
+  postgres_data:
   static_data:
   media_data:
